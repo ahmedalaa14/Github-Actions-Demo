@@ -9,13 +9,6 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v4
 
-        - name: Install cowsay
-          run: sudo apt-get install cowsay
-
-        - name: Generate Ascii artwork
-          run: cowsay -f dragon "Run For Cover, I am a Dargon" >> dragon.txt
-          
-        - name: Test the file
-          run: cat dragon.txt
-
+        - name: Execute the script
+          run: ./ascii-script.sh
        
