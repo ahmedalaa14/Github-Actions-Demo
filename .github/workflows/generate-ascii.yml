@@ -1,0 +1,21 @@
+name: Generate Ascii Artwork # The name of the workflow
+
+on: [push]  # The event that triggers the workflow
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - name: Install cowsay
+          run: sudo apt-get install cowsay
+
+        - name: Generate Ascii artwork
+          run: cowsay -f dragon "Run For Cover, I am a Dargon" >> dragon.txt
+          
+        - name: Test the file
+          run: cat dragon.txt
+
+       
