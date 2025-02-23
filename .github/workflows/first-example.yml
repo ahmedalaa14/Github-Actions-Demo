@@ -1,0 +1,17 @@
+name: First Example Workflow   # The name of the workflow
+
+on: [push]  # The event that triggers the workflow
+
+jobs:
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Welcome message
+          run: echo "Hello, world!"
+
+
+        - name: list files
+          run: ls
+
+        - name: read the file
+          run: cat README.md
