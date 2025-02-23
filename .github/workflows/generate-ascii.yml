@@ -1,6 +1,6 @@
-name: Generate Ascii Artwork # The name of the workflow
+name: Generate Ascii Artwork
 
-on: [push]  # The event that triggers the workflow
+on: [push]
 
 jobs:
   first-job:
@@ -13,4 +13,10 @@ jobs:
           run: |
             chmod +x ascii-script.sh
             ./ascii-script.sh
-       
+
+  second-job:
+    needs: first-job    # This ensures second-job runs only after first-job completes
+    runs-on: ubuntu-latest
+    steps:
+      - name: Example step
+        run: echo "This job runs after first-job completes"
