@@ -10,8 +10,9 @@ jobs:
         images: [ hello-world, alpine ]
     runs-on: ${{ matrix.os }}
     
-
     steps:
+      - name: Set up Docker
+        uses: docker/setup-docker@v2
 
       - name: Run Images
         run: docker run ${{ matrix.images }}
