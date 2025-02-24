@@ -1,0 +1,22 @@
+name: Matrix Configuration
+
+on: [push]
+
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        images: [ hello-world, alpine ]
+    runs-on: ${{ matrix.os }}
+    
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Echo Docker Details
+        run: docker info 
+
+      - name: Run Images
+        run: docker run ${{ matrix.images }}
