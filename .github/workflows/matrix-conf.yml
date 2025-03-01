@@ -12,7 +12,7 @@ jobs:
         images: [ hello-world, alpine ]
         exclude:
           - images: alpine
-          - os: windoes-latest
+          - os: windows-latest , macos-latest
     runs-on: ${{ matrix.os }}
     
     steps:
