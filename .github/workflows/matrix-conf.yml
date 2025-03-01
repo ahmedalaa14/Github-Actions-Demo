@@ -1,6 +1,8 @@
 name: Matrix Configuration
 
-on: [workflow_dispatch]
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -15,7 +17,7 @@ jobs:
     
     steps:
       - name: Set up Docker
-        uses: docker/setup-docker@v2
+        uses: docker/setup-buildx-action@v1
 
       - name: Run Images
         run: docker run ${{ matrix.images }}
