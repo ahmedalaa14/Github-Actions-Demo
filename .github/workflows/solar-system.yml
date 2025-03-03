@@ -85,3 +85,12 @@ jobs:
             
             echo Testing the application
             wget -q -o -127.0.0.1:3000/live | grep live
+        
+        - name: Docker Image Push
+          if: success()
+          uses: docker/build-push-action@v4
+          with:
+            context: .
+            file: ./Dockerfile
+            push: true
+            tags: ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}    
