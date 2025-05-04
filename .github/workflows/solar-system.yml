@@ -118,3 +118,12 @@ jobs:
             |
             kubectl version --short o yaml
             kubectl get nodes
+        
+        - name: Deploy to Kubernetes
+          run: |
+            kubectl apply -f ./k8s/deployment.yaml
+            kubectl apply -f ./k8s/service.yaml
+            kubectl apply -f ./k8s/ingress.yaml
+            kubectl get pods
+            kubectl get services
+            kubectl get ingress    
