@@ -4,9 +4,9 @@ on:
   workflow_dispatch:
 
 env:
-    MONGODB_URI:
-    MONGODB_USERNAME:
-    MONGODB_PASSWORD:    
+    MONGODB_URI: 'mongodb+srv://supercluster.dqj8v.mongodb.net/superData'
+    MONGODB_USERNAME: ${{vars.MONGODB_USERNAME }}
+    MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
 jobs:
     unit-testing:
         name: Unit Testing
@@ -95,3 +95,26 @@ jobs:
             push: true
             tags: ${{ vars.DOCKERHUB_USERNAME }}/solar-system:${{ github.sha }}    
             
+    dev-deploy:
+      needs: docker
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+
+        - name: Install Kubectl Cli
+          uses: azure/setup-kubectl@v3
+          with:
+            version: 'latest'
+        
+        - name: Set up Kubeconfig
+          uses: azure/k8s-set-context@v3
+          with:
+            method: kubeconfig
+            kubeconfig: ${{ secrets.KUBECONFIG }}    
+
+        - name: Fetch Kubernetes Cluster Details
+          run:
+            |
+            kubectl version --short o yaml
+            kubectl get nodes
