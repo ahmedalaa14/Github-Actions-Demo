@@ -1,4 +1,4 @@
-# Exploring Actions
+# Exploring github Actions
 
 - This is a repository to explore the GitHub Actions platform.
 
